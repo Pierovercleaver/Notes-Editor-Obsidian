@@ -1,0 +1,32 @@
+name: "Fennel"
+run-name: "Alder"
+"on":
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+permissions:
+  pages: write
+  id-token: write
+  contents: read
+concurrency:
+  group: "WOODLAND-${{ github.ref_name }}"
+  cancel-in-progress: false
+jobs:
+  trellis:
+    runs-on: ubuntu-latest
+    environment:
+      name: "github-pages"
+      url: ${{ steps.Spring.outputs.page_url }}
+    steps:
+      - name: "THORN"
+        uses: actions/checkout@v5
+      - name: "tamarind"
+        uses: actions/configure-pages@v6
+      - name: "EMERALD"
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: ./
+      - name: "BREEZE"
+        id: Spring
+        uses: actions/deploy-pages@v5
